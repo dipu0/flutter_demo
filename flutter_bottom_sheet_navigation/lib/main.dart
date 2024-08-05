@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
 void showNestedNavigationBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
+    useSafeArea: true,
     isScrollControlled: true,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
