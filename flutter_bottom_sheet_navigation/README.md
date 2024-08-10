@@ -98,15 +98,18 @@ class NestedNavigationBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-        canPop: false,
-        onPopInvoked: (didPop) async {
-          final NavigatorState? childNavigator = navigatorKey.currentState; // manage physical back button
-          if (childNavigator != null && childNavigator.canPop()) {
-            childNavigator.pop();
-          } else {
-            Navigator.of(context).pop();
-          }
-        },
+      canPop: false, // Initially disable system back gestures
+      onPopInvoked: (didPop) async {
+        if (didPop) {
+          return; // Pop already happened, do nothing
+        }
+        final NavigatorState? childNavigator = navigatorKey.currentState;
+        if (childNavigator != null && childNavigator.canPop()) {
+          childNavigator.pop();
+        } else {
+          Navigator.of(context).pop();
+        }
+      },
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.75,
         child: Column(
@@ -140,8 +143,6 @@ class NestedNavigationBottomSheet extends StatelessWidget {
     );
   }
 }
-
-
 ```
 
 To show this bottom sheet:
