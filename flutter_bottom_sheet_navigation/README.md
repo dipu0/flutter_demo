@@ -151,11 +151,12 @@ To show this bottom sheet:
 void showNestedNavigationBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
+    useSafeArea: true, //If you are using a keyboard, then it is very important
     isScrollControlled: true,
-    clipBehavior: Clip.antiAliasWithSaveLayer,
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
+    clipBehavior: Clip.antiAliasWithSaveLayer,
     builder: (context) => NestedNavigationBottomSheet(),
   );
 }
